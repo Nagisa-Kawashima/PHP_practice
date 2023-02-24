@@ -35,3 +35,27 @@ echo $input.PHP_EOL;
 
 //strlen() や strpos() で日本語を扱うにはマルチバイトに対応した別の関数を使う必要があって、 mb_strlen() 、 mb_strpos() を使ってあげる必要があります。
 
+
+
+
+// ###固定長データを扱う関数
+
+$input = '20200320Item-A  1200';
+$input = substr_replace($input, 'Item-B  ', 8, 8);
+echo $input;
+
+$date = substr($input, 0, 8);
+//0 文字目から 8 桁分
+$product = substr($input, 8, 8);
+//8 文字目から 8 桁分
+$amount = substr($input, 16, 4);
+//16 文字目から 4 桁分
+
+echo $date . PHP_EOL;
+echo $product . PHP_EOL;
+echo $amount . PHP_EOL;
+
+// 3 桁ごとにカンマを入れたい場合は number_format() という関数を使ってあげる
+echo number_format($amount); //1,200
+
+//位置と桁数を指定して置換をするには、 substr_replace()
