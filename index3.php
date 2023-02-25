@@ -222,3 +222,29 @@ $picked = array_rand($scores, 2);
 echo $scores[$picked[0]].PHP_EOL; //値を表示
 echo $scores[$picked[1]].PHP_EOL;
 print_r($picked); //ランダムに取り出した配列の添え字が返ってくる
+
+
+
+
+//## 配列の値を集計
+
+//0 のインデックスから 5 個分を 10 の値で埋めて
+$scores = array_fill(0, 5, 10);
+print_r($scores);
+
+//1 から 10 までの値を使って配列を作ってねと
+$scores = range(1, 10);
+print_r($scores);
+
+// 1 から 10 までだけど 2 刻みで 値が２刻みとなる
+$scores = range(1, 10, 2);
+print_r($scores);
+
+// array_sum() 合計を求める
+echo array_sum($scores).PHP_EOL;
+//最大値、最小値
+echo max($scores).PHP_EOL;
+echo min($scores).PHP_EOL;
+//平均を求める 要素の個数は count() という関数を使えば OK
+echo array_sum($scores) / count($scores).PHP_EOL;
+
