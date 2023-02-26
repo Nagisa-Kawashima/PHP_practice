@@ -42,3 +42,95 @@ $newPrices = array_map(
 print_r($newPrices);
 
 
+##キーだけ、値だけを配列で取り出したい場合は array_keys() 、 array_values()
+
+$scores = [
+    'taguchi' => 80,
+    'hayashi' => 70,
+    'kikuchi' => 60,
+];
+
+$keys = array_keys($scores);
+print_r($keys);
+$values = array_values($scores);
+print_r($values);
+
+##特定のキーや値があるか調べたい場合 trueとfalseを返すarray_key_exists() 
+
+if (array_key_exists ('taguchi', $scores) === true) {
+    echo 'taguchi is here'.PHP_EOL;
+}
+
+
+##値が配列の中にあるかどうか調べるには in_array() trueとfalseを返す
+
+if (in_array(80, $scores) === true) {
+    echo '80 is here'.PHP_EOL;
+}
+
+##値を検索して、対応するキーを返す   array_search() という関数
+echo array_search(70, $scores).PHP_EOL;
+
+
+##キーを保持したまま値でソートしたい場合ですが asort() 、もしくは arsort()
+asort($scores);
+print_r($scores);
+arsort($scores);
+print_r($scores);
+
+##値のほうではなくてキーのほうでソートしたいという場合は、 ksort() もしくは krsort
+
+ksort($scores);
+print_r($scores);
+krsort($scores);
+print_r($scores);
+
+
+// 何を比較して並べ変えるかを自分で定義できる usort() 関数
+//ソートしたい配列を渡してあげて、次にどういう並び替えをするかを定義する関数を渡してあげます。
+//配列の 2 要素 $a と $b を比較したときに要素が同じなら 0 、$a が $b よりも大きければ 1 、$a が %b よりも小さければ -1 です。
+$data = [
+    ['name' => 'taguchi', 'score' => 80],
+    ['name' => 'kikuchi', 'score' => 60],
+    ['name' => 'hayashi', 'score' => 70],
+    ['name' => 'tamachi', 'score' => 60],
+  ];
+  
+
+usort(
+    $data,
+    function ($a, $b) {
+        //ソートする配列のいずれかの部分が入ってきます。
+        if($a['score'] === $b['score']) {
+            return 0;
+        }
+        return $a['score']> $b['score'] ? 1 : -1;
+    }
+);
+print_r($data);
+
+##スコアだけでなく名前のほうでも並び替えたい場合 array_multisort() という関数を使います。
+
+$data = [
+    ['name' => 'taguchi', 'score' => 80],
+    ['name' => 'kikuchi', 'score' => 60],
+    ['name' => 'hayashi', 'score' => 70],
+    ['name' => 'tamachi', 'score' => 60],
+  ];
+
+//$scores と $names を作る必要があります。
+$scores = array_column($data, 'score');
+$names = array_column($data, 'name');
+//データから score のキーの値だけを抜き取ってくれます。
+print_r($scores);
+print_r($names);
+
+array_multisort(
+    $scores, SORT_DESC, SORT_NUMERIC, //データ型は想定外の結果を防ぐためにつけたほうが安心
+    $names, SORT_DESC, SORT_STRING,
+    $data
+);
+
+//array_multisort() を使うと直接書き換えてくれる
+print_r($data);
+//並び順やデータの種類も指定
