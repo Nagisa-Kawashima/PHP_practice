@@ -20,3 +20,4 @@ do {
     $avg = $sum / count($scores);
     echo "平均:", $avg, "\n";
 } while(true);
+

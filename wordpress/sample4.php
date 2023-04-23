@@ -77,18 +77,3 @@ print_r($newarray);
 
 
 
-$color = ["黒", "白", "赤"];
-print_r($color);
-
-echo $color[0];
-echo "\n";
-echo $color[1];
-echo "\n";
-echo $color[2];
-echo "\n";
-
-
-for ($i = 0; $i < 4; $i = $i + 1) {
-    echo $color[$i];
-    echo "\n";
-}
