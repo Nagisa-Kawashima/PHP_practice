@@ -40,3 +40,4 @@ $get_sum = fn($a, $b) => $a + $b;
 $sum = $get_sum(10, 15);
 echo $sum;
 
+
