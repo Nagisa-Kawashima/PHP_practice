@@ -15,3 +15,5 @@ foreach ($file as $item) {
     echo $item[1], "\n";
     echo $item[0], "\n";
 }
+
+
